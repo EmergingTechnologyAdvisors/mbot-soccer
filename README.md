@@ -39,16 +39,10 @@ Using the [mBot Bluetooth version](http://www.makeblock.cc/mbot/) and
 
 ## Running the Code
 
-* Run the bot with USB:
-
-```
-  node eg/controls.js
-```
-
 * Run the bot with Bluetooth:
 
 ```
-  node eg/controls.js /dev/tty.Makeblock-ELETSPP
+  node eg/keyboard-controls.js
 ```
 
 * Control the mBot using the right keyboard keys and spacebar
