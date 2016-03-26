@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "bluetooth": "node ./eg/controls.js /dev/tty.Makeblock-ELETSPP",
     "firmata-usb": "interchange install git+https://github.com/Makeblock-official/mbot_nodebots -a uno --firmata=usb",
     "firmata-bluetooth": "interchange install git+https://github.com/Makeblock-official/mbot_nodebots -a uno --firmata=bluetooth"
   },
