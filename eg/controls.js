@@ -1,9 +1,11 @@
 const keypress = require('keypress');
 const five = require('johnny-five');
 const songs = require('j5-songs');
+const dotenv = require('dotenv');
+dotenv.load();
 
 const board = new five.Board({
-  port: process.argv[2]
+  port: process.env.BLE_PORT
 });
 
 const MAX_SPEED = 200;
