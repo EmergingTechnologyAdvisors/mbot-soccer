@@ -1,36 +1,27 @@
 const keypress = require('keypress');
 const five = require('johnny-five');
 const songs = require('j5-songs');
-const dotenv = require('dotenv');
-dotenv.load();
-
-const board = new five.Board({
-  port: process.env.BLE_PORT
-});
-
+const env = require('../config/environment');
 const MAX_SPEED = 200;
 const MAX_SPEED_TURNS = 85;
 
-board.on('ready', function (err) {
+const board = new five.Board({
+  port: env.get('blePort')
+});
+
+board.on('ready', (err) => {
   if (err) {
     console.log('Oops, there was an error:', err);
     return;
   }
+  console.info('Board connected. Welcome to mBot Controls!');
+  console.log('Control the bot with the right arrow keys, and SPACE to stop.');
 
   const motors = {
     left: new five.Motor([6, 7]),
     right: new five.Motor([5, 4])
   };
-
   const piezo = new five.Piezo(8);
-
-  this.repl.inject({
-    motors: motors,
-    piezo: piezo
-  });
-
-  console.info('Board connected. Welcome to mBot Controls!');
-  console.log('Control the bot with the right arrow keys, and SPACE to stop.');
 
   function controls(ch, key) {
     if ( !key ) { return; }

@@ -3,11 +3,16 @@
 const Hapi = require('hapi');
 const env = require('./config/environment');
 const pkg = require('./package.json');
+const routes = require('./routes');
 
 const server = new Hapi.Server();
 server.connection({ port: env.get('port') });
+server.route(routes);
 
-server.register([require('blipp')], (err) => {
+server.register([
+  require('blipp'),
+  require('./plugins/controls')
+], (err) => {
   if (err) {
     console.log('Error loading plugins', err);
     throw err;
