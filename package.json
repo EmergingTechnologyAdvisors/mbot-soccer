@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./eg/controls.js",
+    "controls": "node ./eg/controls.js",
     "firmata-usb": "interchange install git+https://github.com/Makeblock-official/mbot_nodebots -a uno --firmata=usb",
     "firmata-bluetooth": "interchange install git+https://github.com/Makeblock-official/mbot_nodebots -a uno --firmata=bluetooth",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,9 @@
   },
   "homepage": "https://github.com/EmergingTechnologyAdvisors/mbot-soccer",
   "dependencies": {
-    "dotenv": "^2.0.0",
+    "blipp": "^2.3.0",
+    "convict": "^1.1.3",
+    "hapi": "^13.2.2",
     "j5-songs": "0.0.9",
     "johnny-five": "^0.9.26",
     "keypress": "^0.2.1",
