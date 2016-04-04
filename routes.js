@@ -7,6 +7,7 @@ const routes = [
     handler: {
       directory: {
         path: './public',
+        redirectToSlash: true,
         listing: false,
         index: true
       }

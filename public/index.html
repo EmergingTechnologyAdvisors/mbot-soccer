@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emerging Technology Advisors - Bot Soccer</title>
+
+    <link href="/assets/app.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+    navigation { position: absolute; right: 10px; top:10px; background: white; border: 2px solid yellow; padding: 10px;}
+    dl { padding: 0px; margin:0px;}
+    dd { padding-left: 110px; border-bottom: 1px solid darkgray;  padding-bottom: 2px; margin-bottom: 2px;}
+    dt { float: left; width: 100px;}
+    #log { background: white; position: absolute; top: 100px; left: 10px; right: 200px; bottom: 10px; overflow: scroll; padding: 10px;}
+    h1 { margin: 10px 10px; color: yellow; font-weight: bold; height: 80px; vertical-align: middle; line-height: 80px}
+    h4 { font-weight: bold; font-size: 13px}
+    body{ margin: 0px; padding: 0px;}
+    #battery { width: 49%; float: left; text-align: left; height: 20px; line-height: 20px; vertical-align: middle; font-size: 11px;}
+    #signal { margin-left: 51%; width: 49%; text-align: right;height: 20px; line-height: 20px; vertical-align: middle;font-size: 11px;}
+    </style>
+  </head>
+  <body>
+  <h1>Welcome to Bot Soccer</h1>
+  <navigation>
+  <h4>Bot Controls</h4>
+  <dl>
+    <dt>Forward:</dt>
+    <dd>&#8593;</dd>
+    <dt>Backward:</dt>
+    <dd>&#8595;</dd>
+    <dt>Turn Left:</dt>
+    <dd>&#8592;</dd>
+    <dt>Turn Right:</dt>
+    <dd>&#8594;</dd>
+  </dl>
+  <!--
+  <h4>Animations</h4>
+  <dl>
+    <dt>Rick Roll:</dt>
+    <dd><tt>i</tt></dd>
+  </dl>
+  -->
+
+  <h4>Status</h4>
+  <div id='battery'>N/A</div>
+  <div id='signal'>N/A</div>
+  </navigation>
+
+  <div id="log" style="">
+  </div>
+
+  <script src="/scripts/jquery.min.js"></script>
+  <script src="/scripts/socket.io.js"></script>
+  <script src="/scripts/controls.js"></script>
+  </body>
+</html>
