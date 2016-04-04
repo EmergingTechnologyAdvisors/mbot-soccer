@@ -1,3 +1,6 @@
 {
-  "extends": "eta/es6"
+  "extends": "eta/es6",
+  "rules": {
+    "no-var": 0
+  }
 }
