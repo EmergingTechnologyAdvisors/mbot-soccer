@@ -14,6 +14,14 @@ var keymap = {
     ev: 'move',
     action: 'backward'
   },
+  84: { //t
+    ev: 'move',
+    action: 'turbo'
+  },
+  82: {
+    ev: 'move',
+    action: 'rickroll'
+  },
   65: { // a
     ev: 'move',
     action: 'left'

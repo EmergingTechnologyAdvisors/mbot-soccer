@@ -3,6 +3,7 @@
 const internals = {};
 const five = require('johnny-five');
 const env = require('../config/environment');
+const songs = require('j5-songs');
 
 module.exports = internals.Bot = function (io) {
   this.MAX_SPEED = 200;
@@ -24,6 +25,7 @@ module.exports = internals.Bot = function (io) {
       right: new five.Motor([5, 4])
     };
     this.piezo = new five.Piezo(8);
+    this.song = songs.load('doorbell');
 
     console.info('\nBot connected');
 
@@ -60,8 +62,18 @@ module.exports = internals.Bot = function (io) {
             console.log('\nGoing backward');
             this.backward();
             break;
+          case 'turbo':
+          socket.emit('stateChange', 'Turbo BOOST!!');
+          console.log('\nTurbo Boost!!');
+          this.turbo();
+          break;
+          case 'rickroll':
+          socket.emit('stateChange', 'You got Rick Rolled');
+          console.log('\nYou got Rick Rolled');
+          this.rickroll();
+          break;
           default:
-            break;
+          break;
         }
       });
     });
@@ -78,6 +90,19 @@ internals.Bot.prototype.backward = function () {
   console.log('\nGoing backward');
   this.motors.left.fwd(this.MAX_SPEED);
   this.motors.right.rev(this.MAX_SPEED);
+};
+
+internals.Bot.prototype.turbo = function() {
+  console.log('\nTurbo boost');
+  this.motors.left.rev(255);
+  this.motors.right.fwd(255);
+};
+
+internals.Bot.prototype.rickroll = function() {
+  console.log('\nYou\'ve been Rick Rolled');
+  this.motors.left.rev(255);
+  this.motors.right.rev(255);
+  this.piezo.play(this.song);
 };
 
 internals.Bot.prototype.left = function () {
