@@ -37,12 +37,22 @@ Using the [mBot Bluetooth version](http://www.makeblock.cc/mbot/) and
 * Restart the mBot with wireless (Bluetooth) modules installed
 * Pair the MakeBlock Bluetooth module (device Bluetooth settings)
 
-## Running the Code
+## Controlling with the Web Application
 
 * Run the bot with Bluetooth or USB:
 
 ```
-  node eg/controls.js
+  npm start
+```
+
+* Navigate to `http://localhost:8103/` in the browser
+
+## Controlling with the Server
+
+* Run the bot with Bluetooth or USB:
+
+```
+  node run controls
 ```
 
 * Control the mBot using the right keyboard keys and spacebar
