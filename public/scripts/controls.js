@@ -18,7 +18,7 @@ var keymap = {
     ev: 'move',
     action: 'turbo'
   },
-  82: {
+  82: { //r
     ev: 'move',
     action: 'rickroll'
   },
@@ -29,6 +29,10 @@ var keymap = {
   68: { // d
     ev: 'move',
     action: 'right'
+  },
+  70: { //f
+    ev: 'move',
+    action: 'sonar'
   },
   32: { // space
     ev: 'move',

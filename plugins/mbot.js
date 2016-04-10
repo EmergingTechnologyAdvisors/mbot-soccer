@@ -19,6 +19,10 @@ module.exports = internals.Bot = function (io) {
       console.log('Oops, there was an error:', err);
       return;
     }
+    this.proximity = new five.Proximity({
+      controller: 'HCSR04',
+      pin: 10
+    });
 
     this.motors = {
       left: new five.Motor([6, 7]),
@@ -63,15 +67,20 @@ module.exports = internals.Bot = function (io) {
             this.backward();
             break;
           case 'turbo':
-          socket.emit('stateChange', 'Turbo BOOST!!');
-          console.log('\nTurbo Boost!!');
-          this.turbo();
+            socket.emit('stateChange', 'Turbo BOOST!!');
+            console.log('\nTurbo Boost!!');
+            this.turbo();
           break;
           case 'rickroll':
-          socket.emit('stateChange', 'You got Rick Rolled');
-          console.log('\nYou got Rick Rolled');
-          this.rickroll();
+            socket.emit('stateChange', 'You got Rick Rolled');
+            console.log('\nYou got Rick Rolled');
+            this.rickroll();
           break;
+          case 'sonar':
+            socket.emit('stateChange', 'Sonar activated');
+            console.log('\nSonar Activated');
+            this.sonar();
+            break;
           default:
           break;
         }
@@ -103,6 +112,13 @@ internals.Bot.prototype.rickroll = function() {
   this.motors.left.rev(255);
   this.motors.right.rev(255);
   this.piezo.play(this.song);
+};
+
+internals.Bot.prototype.sonar = function() {
+  console.log('\nSensor activated');
+  this.proximity.on('data', function() {
+    console.log('inches: ', this.inches);
+  });
 };
 
 internals.Bot.prototype.left = function () {
