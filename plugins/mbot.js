@@ -29,7 +29,6 @@ module.exports = internals.Bot = function (io) {
       right: new five.Motor([5, 4])
     };
     this.piezo = new five.Piezo(8);
-    this.song = songs.load('doorbell');
 
     console.info('\nBot connected');
 
@@ -70,12 +69,17 @@ module.exports = internals.Bot = function (io) {
             socket.emit('stateChange', 'Turbo BOOST!!');
             console.log('\nTurbo Boost!!');
             this.turbo();
-          break;
+            break;
+          case 'charge':
+            socket.emit('stateChange', 'Charge!!');
+            console.log('\nCharge!!');
+            this.charge();
+            break;
           case 'rickroll':
             socket.emit('stateChange', 'You got Rick Rolled');
             console.log('\nYou got Rick Rolled');
             this.rickroll();
-          break;
+            break;
           case 'sonar':
             socket.emit('stateChange', 'Sonar activated');
             console.log('\nSonar Activated');
@@ -107,11 +111,29 @@ internals.Bot.prototype.turbo = function() {
   this.motors.right.fwd(255);
 };
 
+internals.Bot.prototype.charge = function() {
+  console.log('\nCharge');
+  this.piezo.play({
+    song: [
+      ['C4', 0.5],
+      ['G4', 1.5],
+      ['C4', 0.5],
+      ['G4', 0.5],
+      ['C4', 0.5],
+      ['G4', 0.5],
+      ['C4', 0.5],
+      ['G3', 2],
+      [null, 1]
+    ],
+    tempo: 120
+  });
+};
+
 internals.Bot.prototype.rickroll = function() {
   console.log('\nYou\'ve been Rick Rolled');
   this.motors.left.rev(255);
   this.motors.right.rev(255);
-  this.piezo.play(this.song);
+  this.piezo.play(songs.load('never-gonna-give-you-up'));
 };
 
 internals.Bot.prototype.sonar = function() {

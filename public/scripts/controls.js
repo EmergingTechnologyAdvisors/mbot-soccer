@@ -53,6 +53,10 @@ var keymap = {
   39: { // right
     ev: 'move',
     action: 'right'
+  },
+  67: { // c
+    ev: 'move',
+    action: 'charge'
   }
 };
 
