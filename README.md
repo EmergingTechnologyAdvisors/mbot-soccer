@@ -35,9 +35,10 @@ Using the [mBot Bluetooth version](http://www.makeblock.cc/mbot/) and
 ```
 
 * Restart the mBot with wireless (Bluetooth) modules installed
-* Pair the MakeBlock Bluetooth module (device Bluetooth settings)
 
 ## Controlling with the Web Application
+
+IMPORTANT: Pair the MakeBlock Bluetooth module using your OS settings
 
 * Run the bot with Bluetooth or USB:
 
