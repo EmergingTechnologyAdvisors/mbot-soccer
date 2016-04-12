@@ -4,6 +4,7 @@ const internals = {};
 const five = require('johnny-five');
 const env = require('../config/environment');
 const songs = require('j5-songs');
+const pixel = require('node-pixel');
 
 module.exports = internals.Bot = function (io) {
   this.MAX_SPEED = 200;
@@ -19,10 +20,33 @@ module.exports = internals.Bot = function (io) {
       console.log('Oops, there was an error:', err);
       return;
     }
-    this.proximity = new five.Proximity({
-      controller: 'HCSR04',
-      pin: 10
+
+    const strip = new pixel.Strip({
+      data: 13,
+      length: 2,
+      board: board,
+      controller: 'FIRMATA'
     });
+
+      strip.on('ready', function() {
+      console.log('Showing LEDs');
+      const colors = ['#440000', '#000044'];
+      const currentColors = [0, 1];
+      const currentPos = [0, 1];
+      this.blinker = setInterval(function() {
+
+      strip.color('#000'); // blanks it out
+      for (var i = 0; i < currentPos.length; i++) {
+          if (++currentPos[i] >= strip.stripLength()) {
+              currentPos[i] = 0;
+              if (++currentColors[i] >= colors.length) currentColors[i] = 0;
+            }
+          strip.pixel(currentPos[i]).color(colors[currentColors[i]]);
+        }
+      strip.show();
+  }, 1000 / 3);
+});
+
 
     this.motors = {
       left: new five.Motor([6, 7]),
@@ -31,12 +55,13 @@ module.exports = internals.Bot = function (io) {
     this.piezo = new five.Piezo(8);
     this.song = songs.load('doorbell');
 
+
+
     console.info('\nBot connected');
 
     io.on('connection', (socket) => {
       console.info('\nSocket connected');
       socket.emit('stateChange', 'Bot connected. Ready for controls');
-
       socket.on('move', (data) => {
         console.log('\nAction received:', data.action);
 
@@ -76,11 +101,6 @@ module.exports = internals.Bot = function (io) {
             console.log('\nYou got Rick Rolled');
             this.rickroll();
           break;
-          case 'sonar':
-            socket.emit('stateChange', 'Sonar activated');
-            console.log('\nSonar Activated');
-            this.sonar();
-            break;
           default:
           break;
         }
@@ -93,7 +113,7 @@ internals.Bot.prototype.forward = function () {
   console.log('\nGoing forward');
   this.motors.left.rev(this.MAX_SPEED);
   this.motors.right.fwd(this.MAX_SPEED);
-};
+  };
 
 internals.Bot.prototype.backward = function () {
   console.log('\nGoing backward');
@@ -112,13 +132,6 @@ internals.Bot.prototype.rickroll = function() {
   this.motors.left.rev(255);
   this.motors.right.rev(255);
   this.piezo.play(this.song);
-};
-
-internals.Bot.prototype.sonar = function() {
-  console.log('\nSensor activated');
-  this.proximity.on('data', function() {
-    console.log('inches: ', this.inches);
-  });
 };
 
 internals.Bot.prototype.left = function () {
