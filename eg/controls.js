@@ -72,8 +72,27 @@ board.on('ready', (err) => {
     if ( key.name === 'r' ) {
       console.log('\nRick Rolled!!');
       piezo.play(songs.load('never-gonna-give-you-up'));
-      motors.left.fwd(255);
-      motors.right.fwd(255);
+
+      motors.left.fwd(MAX_SPEED);
+      motors.right.fwd(MAX_SPEED);
+    }
+
+    if ( key.name === 'c' ) {
+      console.log('\nCharge!!');
+      piezo.play({
+        song: [
+          ['C4', 0.5],
+          ['G4', 1.5],
+          ['C4', 0.5],
+          ['G4', 0.5],
+          ['C4', 0.5],
+          ['G4', 0.5],
+          ['C4', 0.5],
+          ['G3', 2],
+          [null, 1]
+        ],
+        tempo: 120
+      });
     }
   }
 
