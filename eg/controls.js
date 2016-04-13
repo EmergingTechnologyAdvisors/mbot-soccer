@@ -3,7 +3,8 @@ const five = require('johnny-five');
 const songs = require('j5-songs');
 const env = require('../config/environment');
 const MAX_SPEED = 200;
-const MAX_SPEED_TURNS = 85;
+// For smooth terrain
+//const MAX_SPEED_TURNS = 85;
 
 const board = new five.Board({
   port: env.get('blePort')
@@ -47,8 +48,8 @@ board.on('ready', (err) => {
 
     if ( key.name === 'left' || key.name === 'a') {
       console.log('\nGoing left');
-      motors.left.fwd(MAX_SPEED_TURNS);
-      motors.right.fwd(MAX_SPEED_TURNS);
+      motors.left.fwd(MAX_SPEED);
+      motors.right.fwd(MAX_SPEED);
     }
 
     if ( key.name === 'down' || key.name === 's') {
@@ -59,8 +60,8 @@ board.on('ready', (err) => {
 
     if ( key.name === 'right' || key.name === 'd') {
       console.log('\nGoing right');
-      motors.left.rev(MAX_SPEED_TURNS);
-      motors.right.rev(MAX_SPEED_TURNS);
+      motors.left.rev(MAX_SPEED);
+      motors.right.rev(MAX_SPEED);
     }
 
     if ( key.name === 't' ) {

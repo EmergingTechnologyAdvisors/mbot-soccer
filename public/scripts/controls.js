@@ -77,13 +77,9 @@ $(function() {
     });
   });
 
-  // socket.on('battery', function(data) {
-  //   $('#battery').text(data);
-  // });
-  //
-  // socket.on('signal', function(data) {
-  //   $('#signal').text(data);
-  // });
+  socket.on('proximity', function(message) {
+    $('#proximity').text(message);
+  });
 
   socket.on('stateChange', function(data) {
     $('#log').prepend('<div>' + data + '</div>');
