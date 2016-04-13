@@ -4,11 +4,11 @@ const internals = {};
 const five = require('johnny-five');
 const env = require('../config/environment');
 const songs = require('j5-songs');
-const pixel = require('node-pixel');
 
 module.exports = internals.Bot = function (io) {
   this.MAX_SPEED = 200;
-  this.MAX_SPEED_TURNS = 85;
+  // Smooth terrain
+  //this.MAX_SPEED_TURNS = 85;
   this.io = io;
 
   const board = new five.Board({
@@ -21,43 +21,31 @@ module.exports = internals.Bot = function (io) {
       return;
     }
 
-    const strip = new pixel.Strip({
-      data: 13,
-      length: 2,
-      board: board,
-      controller: 'FIRMATA'
-    });
-
-    strip.on('ready', function() {
-      console.log('Showing LEDs');
-      const colors = ['#440000', '#000044'];
-      const currentColors = [0, 1];
-      const currentPos = [0, 1];
-      this.blinker = setInterval(function() {
-
-      strip.color('#000'); // blanks it out
-      for (var i = 0; i < currentPos.length; i++) {
-        if (++currentPos[i] >= strip.stripLength()) {
-            currentPos[i] = 0;
-            if (++currentColors[i] >= colors.length) currentColors[i] = 0;
-          }
-        strip.pixel(currentPos[i]).color(colors[currentColors[i]]);
-        }
-        strip.show();
-      }, 1000 / 3);
-    });
-
     this.motors = {
       left: new five.Motor([6, 7]),
       right: new five.Motor([5, 4])
     };
+
     this.piezo = new five.Piezo(8);
 
-    console.info('\nBot connected');
+    this.proximity = new five.Proximity({
+      controller: 'HCSR04',
+      pin: 10
+    });
+
+    console.info('\nmBot connected to Johnny-Five');
 
     io.on('connection', (socket) => {
-      console.info('\nSocket connected');
-      socket.emit('stateChange', 'Bot connected. Ready for controls');
+      console.info('\nWeb Socket connected');
+      socket.emit('stateChange', 'Bot connected. Ready for controls.');
+
+      this.proximity.on('data', function (data) {
+        if (data.in) {
+          console.log('proximity', data);
+          socket.emit('proximity', data.in + 'in');
+        }
+      });
+
       socket.on('move', (data) => {
         console.log('\nAction received:', data.action);
 
@@ -98,14 +86,9 @@ module.exports = internals.Bot = function (io) {
             this.charge();
             break;
           case 'rickroll':
-            socket.emit('stateChange', 'You got Rick Rolled');
+            socket.emit('stateChange', 'You got Rick Rolled!');
             console.log('\nYou got Rick Rolled');
             this.rickroll();
-            break;
-          case 'sonar':
-            socket.emit('stateChange', 'Sonar activated');
-            console.log('\nSonar Activated');
-            this.sonar();
             break;
           default:
           break;

@@ -34,7 +34,7 @@
     "hapi": "^13.2.2",
     "inert": "^3.2.0",
     "j5-songs": "0.0.9",
-    "johnny-five": "^0.9.26",
+    "johnny-five": "^0.9.39",
     "keypress": "^0.2.1",
     "lodash": "^4.7.0",
     "node-pixel": "^0.6.0",
