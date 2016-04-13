@@ -3,8 +3,7 @@ const five = require('johnny-five');
 const songs = require('j5-songs');
 const env = require('../config/environment');
 const MAX_SPEED = 200;
-// For smooth terrain
-//const MAX_SPEED_TURNS = 85;
+const MAX_SPEED_TURNS = 125;
 
 const board = new five.Board({
   port: env.get('blePort')
@@ -48,8 +47,8 @@ board.on('ready', (err) => {
 
     if ( key.name === 'left' || key.name === 'a') {
       console.log('\nGoing left');
-      motors.left.fwd(MAX_SPEED);
-      motors.right.fwd(MAX_SPEED);
+      motors.left.fwd(MAX_SPEED_TURNS);
+      motors.right.fwd(MAX_SPEED_TURNS);
     }
 
     if ( key.name === 'down' || key.name === 's') {
@@ -74,8 +73,8 @@ board.on('ready', (err) => {
       console.log('\nRick Rolled!!');
       piezo.play(songs.load('never-gonna-give-you-up'));
 
-      motors.left.fwd(MAX_SPEED);
-      motors.right.fwd(MAX_SPEED);
+      motors.left.fwd(MAX_SPEED_TURNS);
+      motors.right.fwd(MAX_SPEED_TURNS);
     }
 
     if ( key.name === 'c' ) {
