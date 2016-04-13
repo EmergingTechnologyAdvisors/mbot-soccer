@@ -7,8 +7,7 @@ const songs = require('j5-songs');
 
 module.exports = internals.Bot = function (io) {
   this.MAX_SPEED = 200;
-  // Smooth terrain
-  //this.MAX_SPEED_TURNS = 85;
+  this.MAX_SPEED_TURNS = 125;
   this.io = io;
 
   const board = new five.Board({
@@ -28,10 +27,10 @@ module.exports = internals.Bot = function (io) {
 
     this.piezo = new five.Piezo(8);
 
-    this.proximity = new five.Proximity({
-      controller: 'HCSR04',
-      pin: 10
-    });
+    // this.proximity = new five.Proximity({
+    //   controller: 'HCSR04',
+    //   pin: 10
+    // });
 
     console.info('\nmBot connected to Johnny-Five');
 
@@ -39,56 +38,49 @@ module.exports = internals.Bot = function (io) {
       console.info('\nWeb Socket connected');
       socket.emit('stateChange', 'Bot connected. Ready for controls.');
 
-      this.proximity.on('data', function (data) {
-        if (data.in) {
-          console.log('proximity', data);
-          socket.emit('proximity', data.in + 'in');
-        }
-      });
+      // This is not giving accurate readings
+      // this.proximity.on('data', function (data) {
+      //   if (data.in) {
+      //     console.log('proximity', data);
+      //     socket.emit('proximity', data.in + 'in');
+      //   }
+      // });
 
       socket.on('move', (data) => {
         console.log('\nAction received:', data.action);
 
         switch (data.action) {
           case 'stop':
-            socket.emit('stateChange', 'Stopping');
-            console.log('\nStopping');
             this.stop();
+            socket.emit('stateChange', 'Stopping');
             break;
           case 'forward':
-            socket.emit('stateChange', 'Going forward');
-            console.log('\nGoing forward');
             this.forward();
+            socket.emit('stateChange', 'Going forward');
             break;
           case 'left':
-            socket.emit('stateChange', 'Going left');
-            console.log('\nGoing left');
             this.left();
+            socket.emit('stateChange', 'Going left');
             break;
           case 'right':
             socket.emit('stateChange', 'Going right');
-            console.log('\nGoing right');
             this.right();
             break;
           case 'backward':
             socket.emit('stateChange', 'Going backward');
-            console.log('\nGoing backward');
             this.backward();
             break;
           case 'turbo':
-            socket.emit('stateChange', 'Turbo BOOST!!');
-            console.log('\nTurbo Boost!!');
             this.turbo();
+            socket.emit('stateChange', 'Turbo BOOST!!');
             break;
           case 'charge':
-            socket.emit('stateChange', 'Charge!!');
-            console.log('\nCharge!!');
             this.charge();
+            socket.emit('stateChange', 'Charge!!');
             break;
           case 'rickroll':
-            socket.emit('stateChange', 'You got Rick Rolled!');
-            console.log('\nYou got Rick Rolled');
             this.rickroll();
+            socket.emit('stateChange', 'You got Rick Rolled!');
             break;
           default:
           break;
@@ -99,25 +91,24 @@ module.exports = internals.Bot = function (io) {
 };
 
 internals.Bot.prototype.forward = function () {
-  console.log('\nGoing forward');
   this.motors.left.rev(this.MAX_SPEED);
   this.motors.right.fwd(this.MAX_SPEED);
+  console.log('\nGoing forward');
   };
 
 internals.Bot.prototype.backward = function () {
-  console.log('\nGoing backward');
   this.motors.left.fwd(this.MAX_SPEED);
   this.motors.right.rev(this.MAX_SPEED);
+  console.log('\nGoing backward');
 };
 
 internals.Bot.prototype.turbo = function() {
-  console.log('\nTurbo boost');
   this.motors.left.rev(255);
   this.motors.right.fwd(255);
+  console.log('\nTurbo boost');
 };
 
 internals.Bot.prototype.charge = function() {
-  console.log('\nCharge');
   this.piezo.play({
     song: [
       ['C4', 0.5],
@@ -132,25 +123,26 @@ internals.Bot.prototype.charge = function() {
     ],
     tempo: 120
   });
+  console.log('\nCharge');
 };
 
 internals.Bot.prototype.rickroll = function() {
-  console.log('\nYou\'ve been Rick Rolled');
   this.motors.left.rev(255);
   this.motors.right.rev(255);
   this.piezo.play(songs.load('never-gonna-give-you-up'));
+  console.log('\nYou\'ve been Rick Rolled');
 };
 
 internals.Bot.prototype.left = function () {
   console.log('\nGoing left');
-  this.motors.left.fwd(this.MAX_SPEED);
-  this.motors.right.fwd(this.MAX_SPEED);
+  this.motors.left.fwd(this.MAX_SPEED_TURNS);
+  this.motors.right.fwd(this.MAX_SPEED_TURNS);
 };
 
 internals.Bot.prototype.right = function () {
   console.log('\nGoing right');
-  this.motors.left.rev(this.MAX_SPEED);
-  this.motors.right.rev(this.MAX_SPEED);
+  this.motors.left.rev(this.MAX_SPEED_TURNS);
+  this.motors.right.rev(this.MAX_SPEED_TURNS);
 };
 
 internals.Bot.prototype.stop = function () {
