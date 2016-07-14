@@ -37,6 +37,7 @@
     "johnny-five": "^0.9.39",
     "keypress": "^0.2.1",
     "lodash": "^4.7.0",
+    "node-gamepad": "^0.1.15",
     "node-pixel": "^0.6.0",
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5"
