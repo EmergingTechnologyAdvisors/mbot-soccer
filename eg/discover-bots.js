@@ -21,7 +21,7 @@ noble.on('discover', function (peripheral) {
     name: peripheral.advertisement.localName,
     rssi: peripheral.rssi,
     address: peripheral.address
-  }
+  };
 
   _.forEach(botInfo, function(value, key) {
     console.log(key, ':', value);
