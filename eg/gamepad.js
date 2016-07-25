@@ -1,6 +1,6 @@
 'use strict';
 
-var gamepad = require('gamepad');
+const gamepad = require('gamepad');
 const five = require('johnny-five');
 const env = require('../config/environment');
 const MAX_SPEED = 200;
@@ -27,7 +27,7 @@ gamepad.init();
 
 // List the state of all currently attached devices
 for (var i = 0, l = gamepad.numDevices(); i < l; i++) {
-  console.log(i, gamepad.deviceAtIndex());
+console.log('Connected to game controller');
 }
 
 // Create a game loop and poll for events
@@ -50,7 +50,7 @@ gamepad.on('move', function (id, axis, value) {
 });
 
 gamepad.on('up', function (id, num) { //when turbo or forward is up stop
-  if (num == 1 || num == 0) {
+  if (num == 1 || num == 0 || num == 2 || num == 3) {
     console.log('Stopping');
     motors.left.stop();
     motors.right.stop();
