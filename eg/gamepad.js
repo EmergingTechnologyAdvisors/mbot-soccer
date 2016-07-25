@@ -15,7 +15,8 @@ board.on('ready', (err) => {
     return;
   }
   console.info('Board connected. Welcome to mBot Controls!');
-  console.log('Control the bot with the right arrow keys, and SPACE to stop.');
+  console.log('Control the bot with the supplied controller: \n Turning: Left-D-Pad: Turn left \n Right-D-Pad: Turn right');
+  console.log('Hold these buttons to \n X: Turbo!! \n A: Forward \n B: Reverse \n Y: RickRoll Spin \n L1: Quit \n Let go of button to stop Mbot');
 
   const motors = {
     left: new five.Motor([6, 7]),
@@ -27,7 +28,7 @@ gamepad.init();
 
 // List the state of all currently attached devices
 for (var i = 0, l = gamepad.numDevices(); i < l; i++) {
-console.log('Connected to game controller');
+console.log('Ready to go');
 }
 
 // Create a game loop and poll for events
