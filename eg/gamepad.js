@@ -43,6 +43,11 @@ gamepad.on('move', function (id, axis, value) {
     motors.left.fwd(MAX_SPEED);
     motors.right.fwd(MAX_SPEED);
   }
+  if (axis == 4 && value == 0) {
+    console.log('turning stopping');
+    motors.left.stop();
+    motors.right.stop();
+  }
   if (axis == 4 && value == 1) { //moving right
     console.log('moving right');
     motors.left.rev(MAX_SPEED);
