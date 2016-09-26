@@ -38,11 +38,15 @@ If you're using Windows or Mac, ensure that you have the USB driver:
   npm run firmata-bluetooth
 ```
 
-* Restart the mBot with wireless (Bluetooth) modules installed
+* Slide the mBot power switch to Off
 
-### Pair Your Bot
+* Reinstall the Bluetooth modules
+
+* Slide the mBot power switch to On
 
 * Pair the MakeBlock Bluetooth module using your OS settings
+
+  The MakeBlock's Bluetooth UUID will appear in the list of available devices.
 
 ## Controlling with the Web Application
 
