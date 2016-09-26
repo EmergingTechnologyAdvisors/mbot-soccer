@@ -3,6 +3,23 @@
 Using the [mBot Bluetooth version](http://www.makeblock.cc/mbot/) and
 [mBot NodeBots](https://github.com/Makeblock-official/mbot_nodebots/blob/master/README.md).
 
+## Getting Started
+
+If you're using Windows or Mac, ensure that you have the USB driver:
+
+* Install USB Serial [driver](https://github.com/Makeblock-official/mbot_nodebots/tree/master/drivers) for your platform
+
+### Install Dependencies
+
+* Install git
+* Install Node 4.4 (or greater)
+
+```
+  git clone https://github.com/EmergingTechnologyAdvisors/mbot-soccer
+  cd mbot-soccer
+  npm i
+```
+
 ### Install Firmware (only necessary on new bots)
 
 * Connect the USB cable
@@ -22,23 +39,6 @@ Using the [mBot Bluetooth version](http://www.makeblock.cc/mbot/) and
 ```
 
 * Restart the mBot with wireless (Bluetooth) modules installed
-
-## Getting Started
-
-If you're using Windows or Mac, ensure that you have the USB driver:
-
-* Install USB Serial [driver](https://github.com/Makeblock-official/mbot_nodebots/tree/master/drivers) for your platform
-
-### Install Dependencies
-
-* Install git
-* Install Node 4.4 (or greater)
-
-```
-  git clone https://github.com/EmergingTechnologyAdvisors/mbot-soccer
-  cd mbot-soccer
-  npm i
-```
 
 ### Pair Your Bot
 
