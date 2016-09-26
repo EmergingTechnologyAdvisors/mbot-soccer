@@ -16,7 +16,7 @@ module.exports = internals.Bot = function (io) {
 
   board.on('ready', (err) => {
     if (err) {
-      console.log('Oops, there was an error:', err);
+      console.log('Oops, there was an error connecting to the board:\n\n', err);
       return;
     }
 
