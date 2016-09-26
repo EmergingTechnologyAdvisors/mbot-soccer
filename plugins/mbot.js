@@ -88,6 +88,10 @@ module.exports = internals.Bot = function (io) {
       });
     });
   });
+
+  board.on('error', (err) => {
+    console.info('⛔️ Board Error! ', err);
+  });
 };
 
 internals.Bot.prototype.forward = function () {
