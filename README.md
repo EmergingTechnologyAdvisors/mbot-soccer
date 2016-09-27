@@ -73,6 +73,8 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 ### Controlling with the game controller
 ##### For this example we will be using the [Logitech F310 Gamepad](http://gaming.logitech.com/en-us/product/f310-gamepad)
 ![alt text](/images/gamepad.jpeg)
+
+*This image is a registered trademark of Logitech and is only being used to demonstrate the capabilities with the Mbot*
 * Connect the controller to the usb port before you pair your Mbot to your computer.
 * Make sure on the back of the controller, the switch is in the **D** position
 * Pair your Mbot with Bluetooth or USB
