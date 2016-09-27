@@ -70,7 +70,7 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 
 * Control the mBot using the right keyboard keys and spacebar
 
-### Controlling with the game controller
+## Controlling with the game controller
 ##### For this example we will be using the [Logitech F310 Gamepad](http://gaming.logitech.com/en-us/product/f310-gamepad)
 ![alt text](/images/gamepad.jpeg)
 
