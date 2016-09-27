@@ -65,7 +65,31 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 * Run the bot with Bluetooth or USB:
 
 ```
-  node run controls
+  npm run controls
 ```
 
 * Control the mBot using the right keyboard keys and spacebar
+
+### Controlling with the game controller
+##### For this example we will be using the [Logitech F310 Gamepad](http://gaming.logitech.com/en-us/product/f310-gamepad)
+![alt text](/images/gamepad.jpeg)
+* Connect the controller to the usb port before you pair your Mbot to your computer.
+* Make sure on the back of the controller, the switch is in the **D** position
+* Pair your Mbot with Bluetooth or USB
+* Type the below command into your terminal
+
+```
+npm run gamepad
+```
+* The controls for the Mbot are as follows:
+```
+D-PAD Left:  Turns the Mbot Left
+D-PAD Right:  Turns the Mbot right
+X Button: Moves Mbot forward
+A Button: Moves Mbot forward faster (turbo)
+B Button: Moves Mbot backwards
+Y Button: Spins Mbot
+L1 Button:  Quits your controller and stops the program
+```
+
+* To move the Mbot you must hold the button down like you would in a race car game
