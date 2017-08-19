@@ -38,17 +38,18 @@ setInterval(gamepad.detectDevices, 500);
 
 // Listen for move events on all gamepads
 gamepad.on('move', function (id, axis, value) {
-  if (axis == 4 && value == -1) {
+  console.log('id, axis, value', id, axis, value)
+  if (axis == 2 && value == -1) {
     console.log('moving left');
     motors.left.fwd(MAX_SPEED);
     motors.right.fwd(MAX_SPEED);
   }
-  if (axis == 4 && value == 0) {
+  else if (axis == 2 && value == 0) {
     console.log('turning stopping');
     motors.left.stop();
     motors.right.stop();
   }
-  if (axis == 4 && value == 1) { //moving right
+  else if (axis == 2 && value == 1) { //moving right
     console.log('moving right');
     motors.left.rev(MAX_SPEED);
     motors.right.rev(MAX_SPEED);
@@ -64,6 +65,7 @@ gamepad.on('up', function (id, num) { //when turbo or forward is up stop
 });
 
 gamepad.on('down', function (id, num) {
+
   if (num == 1) { // A button
     console.log('Forward');
     motors.left.rev(MAX_SPEED);

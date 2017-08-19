@@ -29,6 +29,7 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 * Install the USB Firmata:
 
 ```
+  npm i -g nodebots-interchange
   npm run firmata-usb
 ```
 
