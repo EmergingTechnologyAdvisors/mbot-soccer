@@ -12,7 +12,7 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 ### Install Dependencies
 
 * Install git
-* Install Node 4.4 (or greater)
+* Install Node 6
 
 ```
   git clone https://github.com/new-davinci/mbot-soccer
@@ -20,7 +20,7 @@ If you're using Windows or Mac, ensure that you have the USB driver:
   npm i
 ```
 
-### Install Firmware (only necessary on new bots)
+### Install Firmware (*** only necessary on new bots ***)
 
 * Connect the USB cable
 * Remove any attached wireless modules (such as Bluetooth)
@@ -41,6 +41,8 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 * Slide the mBot power switch to Off
 
 * Reinstall the Bluetooth modules
+
+### Connect and Control the Robot
 
 * Slide the mBot power switch to On
 
