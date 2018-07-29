@@ -15,7 +15,7 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 * Install Node 4.4 (or greater)
 
 ```
-  git clone https://github.com/EmergingTechnologyAdvisors/mbot-soccer
+  git clone https://github.com/new-davinci/mbot-soccer
   cd mbot-soccer
   npm i
 ```
