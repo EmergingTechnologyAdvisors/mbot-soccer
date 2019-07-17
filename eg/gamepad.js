@@ -38,17 +38,17 @@ setInterval(gamepad.detectDevices, 500);
 
 // Listen for move events on all gamepads
 gamepad.on('move', function (id, axis, value) {
-  if (axis == 4 && value == -1) {
+  if (axis == 0 && value == -1) {
     console.log('moving left');
     motors.left.fwd(MAX_SPEED);
     motors.right.fwd(MAX_SPEED);
   }
-  if (axis == 4 && value == 0) {
-    console.log('turning stopping');
-    motors.left.stop();
-    motors.right.stop();
-  }
-  if (axis == 4 && value == 1) { //moving right
+ // if (axis == 2 ) {
+ //   console.log('turning stopping');
+ //   motors.left.stop();
+ //   motors.right.stop();
+ // }
+  if (axis == 0 && value == 1) { //moving right
     console.log('moving right');
     motors.left.rev(MAX_SPEED);
     motors.right.rev(MAX_SPEED);
@@ -64,27 +64,27 @@ gamepad.on('up', function (id, num) { //when turbo or forward is up stop
 });
 
 gamepad.on('down', function (id, num) {
-  if (num == 1) { // A button
+  if (num == 2) { // A button
     console.log('Forward');
     motors.left.rev(MAX_SPEED);
     motors.right.fwd(MAX_SPEED);
   }
-  if (num == 0) { // X button
+  if (num == 3) { // X button
     console.log('Turbo!!!');
     motors.left.rev(255);
     motors.right.fwd(255);
   }
-  if (num == 2) { // B button
+  if (num == 1) { // B button
     console.log('Going backward');
     motors.left.fwd(MAX_SPEED);
     motors.right.rev(MAX_SPEED);
   }
-  if (num == 3) { // Y button
+  if (num == 0) { // Y button
     console.log('Rick Rolled!!');
     motors.left.fwd(MAX_SPEED);
     motors.right.fwd(MAX_SPEED);
   }
-  if (num == 4) { //left trigger L1
+  if (num == 6) { //left trigger L1
     console.log('Quitting');
     motors.left.stop();
     motors.right.stop();

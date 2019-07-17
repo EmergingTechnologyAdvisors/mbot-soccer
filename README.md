@@ -12,7 +12,7 @@ If you're using Windows or Mac, ensure that you have the USB driver:
 ### Install Dependencies
 
 * Install git
-* Install Node 4.4 (or greater)
+* Install Node 8.16.0 (or greater)
 
 ```
   git clone https://github.com/EmergingTechnologyAdvisors/mbot-soccer
