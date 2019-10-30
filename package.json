@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "nodebots-interchange": "^1.0.1",
-    "eslint": "^2.5.1",
+    "eslint": "^6.6.0",
     "eslint-config-eta": "0.0.4"
   }
 }
